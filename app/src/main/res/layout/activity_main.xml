@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/menu_bg">
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/papers_student"
+        android:textColor="#000"
+        android:textSize="40sp" />
+
+    <Button
+        android:id="@+id/play_newButton"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:text="@string/new_game" />
+
+    <Button
+        android:id="@+id/play_nextButton"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:text="@string/continue_game" />
+
+
+</LinearLayout>
