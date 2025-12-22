@@ -1,47 +1,52 @@
 package com.example.student_game
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.student_game.ui.theme.Student_gameTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Student_gameTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
-        }
+        setContentView(R.layout.activity_main)
+
+        val bgView = findViewById<ImageView>(R.id.backgroundView)
+
+        val animation = bgView.background as AnimationDrawable
+        animation.start()
+
+        startCameraShake(bgView)
     }
+
+    private fun startCameraShake(view: ImageView) {
+
+        val shakeX = ObjectAnimator.ofFloat(
+            view,
+            "translationX",
+            0f, 4f, -4f, 3f, -3f, 0f
+        )
+
+        val shakeY = ObjectAnimator.ofFloat(
+            view,
+            "translationY",
+            0f, 3f, -3f, 4f, -4f, 0f
+        )
+
+        shakeX.duration = 6000
+        shakeY.duration = 6000
+
+        shakeX.repeatCount = ObjectAnimator.INFINITE
+        shakeY.repeatCount = ObjectAnimator.INFINITE
+
+        val set = AnimatorSet()
+        set.playTogether(shakeX, shakeY)
+        set.start()
+    }
+
+
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Student_gameTheme {
-        Greeting("Android")
-    }
-}
