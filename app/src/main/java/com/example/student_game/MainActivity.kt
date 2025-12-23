@@ -15,37 +15,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Фоновая анимация
         val bgView = findViewById<ImageView>(R.id.backgroundView)
         val animation = bgView.background as AnimationDrawable
+        animation.start()
+
+        // Эффект дрожания / смещения фона
+        startCameraShake(bgView)
+
+        // Кнопка "Играть"
         val newGameButton = findViewById<Button>(R.id.play_newButton)
         newGameButton.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java)
-            startActivity(intent)
-        }
-        animation.start()
-
-        startCameraShake(bgView)
-
-        val dbHelper = DatabaseHelper(this)
-
-        // --- Добавляем тестовые данные только если таблица пустая ---
-        val db = dbHelper.readableDatabase
-        val cursor = db.query("student_cards", arrayOf("id"), null, null, null, null, null)
-        if (!cursor.moveToFirst()) {
-            // Таблица пустая, добавляем студентов
-            dbHelper.addStudentCard("Иван Иванов", "01.01.2005", "М", "1", "да")
-            dbHelper.addStudentCard("Мария Петрова", "12.03.2004", "Ж", "2", "да")
-            dbHelper.addStudentCard("Сергей Выдуманный", "05.05.2006", "М", "1", "нет")
-            dbHelper.addStudentCard("Анна Фиктивная", "22.07.2005", "Ж", "3", "нет")
-            dbHelper.addStudentCard("Петр Нереальный", "15.02.2004", "М", "2", "нет")
-        }
-        cursor.close()
-        db.close()
-
-        // --- Кнопка для перехода к проверке базы ---
-        val checkDbButton = findViewById<Button>(R.id.checkDatabaseButton)
-        checkDbButton.setOnClickListener {
-            val intent = Intent(this, DatabaseActivity::class.java)
             startActivity(intent)
         }
     }
