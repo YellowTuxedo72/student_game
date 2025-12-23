@@ -24,6 +24,14 @@
         android:id="@+id/contentLayer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/characterImage"
+            android:layout_width="150dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:src="@drawable/character_1"
+            android:visibility="visible"/>
 
     </FrameLayout>
 
