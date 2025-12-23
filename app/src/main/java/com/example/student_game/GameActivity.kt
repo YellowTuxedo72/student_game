@@ -11,9 +11,21 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.ComponentActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import db.StudentDatabaseHelper
+import ui.StudentAdapter
+
 
 
 class GameActivity : ComponentActivity() {
+
+    private lateinit var listButtonContainer: View
+
+    private lateinit var openListButton: Button
+
+    private lateinit var studentListContainer: View
+    private lateinit var studentCard: View
     private lateinit var character: ImageView
     private lateinit var buttonLeft: Button
     private lateinit var buttonRight: Button
@@ -25,13 +37,33 @@ class GameActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+        val recycler = findViewById<RecyclerView>(R.id.studentRecycler)
+        recycler.layoutManager = LinearLayoutManager(this)
+
+        val db = StudentDatabaseHelper(this)
+        val students = db.getAllStudents()
+
+        recycler.adapter = StudentAdapter(students)
+
 
         character = findViewById(R.id.characterImage)
         buttonLeft = findViewById(R.id.button1)
         buttonRight = findViewById(R.id.button2)
 
+        studentCard = findViewById(R.id.studentCardContainer)
+        listButtonContainer = findViewById(R.id.studentListButtonContainer)
+        openListButton = findViewById(R.id.openStudentListButton)
+        studentListContainer = findViewById(R.id.studentListContainer)
+
+        studentCard.visibility = View.INVISIBLE
+        listButtonContainer.visibility = View.INVISIBLE
+        studentListContainer.visibility = View.INVISIBLE
+
+
         buttonLeft.visibility = View.INVISIBLE
         buttonRight.visibility = View.INVISIBLE
+        studentCard = findViewById(R.id.studentCardContainer)
+        studentCard.visibility = View.INVISIBLE
 
         // Ждём layout и запускаем цикл
         character.post {
@@ -57,11 +89,40 @@ class GameActivity : ComponentActivity() {
         enterAnim.start()
 
         enterAnim.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: android.animation.Animator) {
+            override fun onAnimationEnd(animation: Animator) {
                 buttonLeft.visibility = View.VISIBLE
                 buttonRight.visibility = View.VISIBLE
+                studentCard.alpha = 0f
+                studentCard.visibility = View.VISIBLE
+                studentCard.animate().alpha(1f).setDuration(300).start()
+
+                listButtonContainer.alpha = 0f
+                listButtonContainer.visibility = View.VISIBLE
+                listButtonContainer.animate().alpha(1f).setDuration(300).start()
+
+                openListButton.setOnClickListener {
+                    // скрываем карточку и кнопку
+                    studentCard.visibility = View.INVISIBLE
+                    listButtonContainer.visibility = View.INVISIBLE
+
+                    // показываем листок со списком
+                    studentListContainer.alpha = 0f
+                    studentListContainer.visibility = View.VISIBLE
+                    studentListContainer.animate().alpha(1f).setDuration(300).start()
+                }
+
+
+                // Показываем зачетку
+                studentCard.alpha = 0f
+                studentCard.visibility = View.VISIBLE
+                studentCard.animate()
+                    .alpha(1f)
+                    .setDuration(300)
+                    .start()
+
                 setupButtonActions()
             }
+
         })
     }
 
@@ -89,6 +150,18 @@ class GameActivity : ComponentActivity() {
     }
 
     private fun animateCharacterExit(targetX: Float) {
+        studentCard.visibility = View.INVISIBLE
+        listButtonContainer.visibility = View.INVISIBLE
+        studentListContainer.visibility = View.INVISIBLE
+
+        studentCard.animate()
+            .alpha(0f)
+            .setDuration(200)
+            .withEndAction {
+                studentCard.visibility = View.INVISIBLE
+            }
+            .start()
+
         val exitAnim = ObjectAnimator.ofFloat(character, "translationX", character.translationX, targetX)
         exitAnim.duration = 1000
         exitAnim.interpolator = DecelerateInterpolator()

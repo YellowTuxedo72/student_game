@@ -1,0 +1,36 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="4dp">
+
+    <TextView
+        android:id="@+id/colRecord"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/colName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="10sp"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/colCourse"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/colFaculty"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="#000000"/>
+</LinearLayout>

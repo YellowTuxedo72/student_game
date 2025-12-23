@@ -27,8 +27,8 @@
 
         <ImageView
             android:id="@+id/characterImage"
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="293dp"
             android:layout_gravity="center"
             android:contentDescription="@string/todo2"
             android:scaleType="fitCenter"
@@ -71,6 +71,111 @@
             android:translationY="290dp"
             android:background="@drawable/button_round"
             android:textColor="#FFFFFF"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/studentListButtonContainer"
+        android:layout_width="186dp"
+        android:layout_height="80dp"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="5dp"
+        android:padding="12dp"
+        android:visibility="invisible">
+
+        <Button
+            android:id="@+id/openStudentListButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Список\nстудентов"
+            android:background="@drawable/button_round"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/studentListContainer"
+        android:layout_width="186dp"
+        android:layout_height="393dp"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/paper_sheet"
+        android:padding="12dp"
+        android:visibility="visible">
+
+        <!-- Заголовок листочка -->
+        <TextView
+            android:id="@+id/listTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:paddingBottom="8dp"
+            android:text="Список студентов"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Контент списка -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/studentRecycler"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="28dp"
+            android:overScrollMode="never" />
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/studentCardContainer"
+        android:layout_width="224dp"
+        android:layout_height="128dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@drawable/student_card"
+        android:padding="16dp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textStudentId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:text="№ 123456"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textStudentName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:text="Иван Иванов"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textCourse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dp"
+                android:text="Курс: 2"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textFaculty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Факультет: ФИИТ"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
     </FrameLayout>
 
 </FrameLayout>
