@@ -17,6 +17,11 @@ class MainActivity : ComponentActivity() {
 
         val bgView = findViewById<ImageView>(R.id.backgroundView)
         val animation = bgView.background as AnimationDrawable
+        val newGameButton = findViewById<Button>(R.id.play_newButton)
+        newGameButton.setOnClickListener {
+            val intent = Intent(this, GameActivity::class.java)
+            startActivity(intent)
+        }
         animation.start()
 
         startCameraShake(bgView)

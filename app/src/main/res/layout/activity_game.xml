@@ -1,0 +1,76 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- ПАНОРАМНЫЙ ФОН (МИР) -->
+
+
+    <!-- СТРЕЛКА ВЛЕВО -->
+
+    <ImageView
+        android:id="@+id/backgroundView"
+        android:layout_width="1474dp"
+        android:layout_height="958dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitStart"
+        android:src="@drawable/office" />
+
+    <Button
+        android:id="@+id/btnLeft"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center_vertical|start"
+        android:background="@android:color/transparent"
+        android:text="◀" />
+
+    <!-- СТРЕЛКА ВПРАВО -->
+    <Button
+        android:id="@+id/btnRight"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center_vertical|end"
+        android:background="@android:color/transparent"
+        android:text="▶" />
+
+    <!-- ЗОНА КЛЮЧЕЙ -->
+    <LinearLayout
+        android:id="@+id/keysUI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Выдать ключ" />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Забрать ключ" />
+    </LinearLayout>
+
+    <!-- ЗОНА ОКНА -->
+    <LinearLayout
+        android:id="@+id/windowUI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Проверить документы" />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Пропустить" />
+    </LinearLayout>
+
+</FrameLayout>
