@@ -2,15 +2,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- ПАНОРАМНЫЙ ФОН (МИР) -->
+    <!-- ФИКСИРОВАННАЯ "стенка" -->
+    <ImageView
+        android:id="@+id/WView"
+        android:layout_width="1474dp"
+        android:layout_height="1212dp"
+        android:layout_gravity="center"
+        android:scaleType="fitStart"
+        android:src="@drawable/outside" />
 
+    <!-- ПАНОРАМНЫЙ ФОН -->
 
-    <!-- СТРЕЛКА ВЛЕВО -->
+    <!-- Стрелки -->
 
     <ImageView
         android:id="@+id/backgroundView"
         android:layout_width="1474dp"
-        android:layout_height="958dp"
+        android:layout_height="1196dp"
         android:adjustViewBounds="true"
         android:scaleType="fitStart"
         android:src="@drawable/office" />
@@ -23,7 +31,6 @@
         android:background="@android:color/transparent"
         android:text="◀" />
 
-    <!-- СТРЕЛКА ВПРАВО -->
     <Button
         android:id="@+id/btnRight"
         android:layout_width="64dp"
@@ -32,7 +39,7 @@
         android:background="@android:color/transparent"
         android:text="▶" />
 
-    <!-- ЗОНА КЛЮЧЕЙ -->
+    <!-- Зона ключей -->
     <LinearLayout
         android:id="@+id/keysUI"
         android:layout_width="wrap_content"
@@ -52,7 +59,7 @@
             android:text="Забрать ключ" />
     </LinearLayout>
 
-    <!-- ЗОНА ОКНА -->
+    <!-- Зона окна -->
     <LinearLayout
         android:id="@+id/windowUI"
         android:layout_width="wrap_content"
