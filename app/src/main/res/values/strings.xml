@@ -3,4 +3,9 @@
     <string name="papers_student">Papers, student</string>
     <string name="new_game">Новая игра 14</string>
     <string name="continue_game">Продолжить</string>
+    <string name="yes">ПРОХОДИ</string>
+    <string name="no">ВОН ОТСЮДА</string>
+    <string name="todo">TODO</string>
+    <string name="todo2">TODO</string>
+    <string name="todo3">TODO</string>
 </resources>
