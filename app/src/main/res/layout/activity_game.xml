@@ -1,83 +1,75 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- ФИКСИРОВАННАЯ "стенка" -->
-    <ImageView
-        android:id="@+id/WView"
-        android:layout_width="1474dp"
-        android:layout_height="1212dp"
-        android:layout_gravity="center"
-        android:scaleType="fitStart"
-        android:src="@drawable/outside" />
+    <!-- ЗАДНИЙ СЛОЙ (дальний фон) -->
+    <FrameLayout
+        android:id="@+id/backgroundLayer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <!-- ПАНОРАМНЫЙ ФОН -->
+        <ImageView
+            android:id="@+id/backgroundImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/office_outside"/>
 
-    <!-- Стрелки -->
+    </FrameLayout>
 
-    <ImageView
-        android:id="@+id/backgroundView"
-        android:layout_width="1474dp"
-        android:layout_height="1196dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitStart"
-        android:src="@drawable/office" />
+    <!-- СРЕДНИЙ СЛОЙ (основной контент / офис) -->
+    <FrameLayout
+        android:id="@+id/contentLayer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnLeft"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_gravity="center_vertical|start"
-        android:background="@android:color/transparent"
-        android:text="◀" />
+    </FrameLayout>
 
-    <Button
-        android:id="@+id/btnRight"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_gravity="center_vertical|end"
-        android:background="@android:color/transparent"
-        android:text="▶" />
+    <!-- ПЕРЕДНИЙ СЛОЙ (передний план / эффекты / рамки) -->
+    <FrameLayout
+        android:id="@+id/uiLayer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <!-- Зона ключей -->
-    <LinearLayout
-        android:id="@+id/keysUI"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:orientation="vertical"
-        android:padding="16dp">
+        <ImageView
+            android:id="@+id/foregroundImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/office_2" />
 
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Выдать ключ" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Забрать ключ" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Пропустить"
+                android:translationX="50dp"
+                android:translationY="100dp"
+                tools:layout_editor_absoluteX="178dp"
+                tools:layout_editor_absoluteY="208dp"
+                tools:ignore="MissingConstraints" />
 
-    <!-- Зона окна -->
-    <LinearLayout
-        android:id="@+id/windowUI"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:visibility="gone">
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Вон отсюда"
+                android:translationX="200dp"
+                android:translationY="150dp"
+                tools:layout_editor_absoluteX="364dp"
+                tools:layout_editor_absoluteY="162dp"
+                tools:ignore="MissingConstraints" />
 
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Проверить документы" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Пропустить" />
-    </LinearLayout>
+
+    </FrameLayout>
 
 </FrameLayout>
