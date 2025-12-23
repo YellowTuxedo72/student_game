@@ -49,4 +49,15 @@
 
     </LinearLayout>
 
+    <!-- Кнопка справа снизу для проверки базы -->
+    <Button
+        android:id="@+id/checkDatabaseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Проверить базу"
+        android:textColor="#FFFFFF"
+        android:background="#88000000"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"/>
+
 </FrameLayout>
