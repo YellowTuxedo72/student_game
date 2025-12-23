@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <!-- ЗАДНИЙ СЛОЙ (дальний фон) -->
+
     <FrameLayout
         android:id="@+id/backgroundLayer"
         android:layout_width="match_parent"
@@ -17,31 +18,23 @@
             android:contentDescription="@string/todo3"
             android:scaleType="fitXY"
             android:src="@drawable/office_outside"/>
-    </FrameLayout>
 
-    <!-- СРЕДНИЙ СЛОЙ (основной контент / офис) -->
-    <FrameLayout
-        android:id="@+id/contentLayer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/contentLayer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/characterImage"
-            android:layout_width="250dp"
-            android:layout_height="293dp"
-            android:layout_gravity="center"
-            android:contentDescription="@string/todo2"
-            android:scaleType="fitCenter"
-            android:src="@drawable/character_1"
-            android:visibility="visible" />
+            <ImageView
+                android:id="@+id/characterImage"
+                android:layout_width="250dp"
+                android:layout_height="293dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/todo2"
+                android:scaleType="fitCenter"
+                android:src="@drawable/character_1"
+                android:visibility="visible" />
 
-    </FrameLayout>
-
-    <!-- ПЕРЕДНИЙ СЛОЙ (передний план / эффекты / рамки) -->
-    <FrameLayout
-        android:id="@+id/uiLayer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        </FrameLayout>
 
         <ImageView
             android:id="@+id/foregroundImage"
@@ -51,46 +44,57 @@
             android:scaleType="fitXY"
             android:src="@drawable/office_2" />
 
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="124dp"
-            android:layout_height="86dp"
-            android:text="@string/yes"
-            android:translationX="220dp"
-            android:translationY="290dp"
-            android:background="@drawable/button_round"
-            android:textColor="#FFFFFF"/>
+        <FrameLayout
+            android:id="@+id/uiLayer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <!-- Кнопка 2 -->
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="127dp"
-            android:layout_height="81dp"
-            android:text="@string/no"
-            android:translationX="550dp"
-            android:translationY="290dp"
-            android:background="@drawable/button_round"
-            android:textColor="#FFFFFF"/>
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="124dp"
+                android:layout_height="86dp"
+                android:background="@drawable/button_round"
+                android:text="@string/yes"
+                android:textColor="#FFFFFF"
+                android:translationX="220dp"
+                android:translationY="290dp" />
+
+            <!-- Кнопка 2 -->
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="127dp"
+                android:layout_height="81dp"
+                android:background="@drawable/button_round"
+                android:text="@string/no"
+                android:textColor="#FFFFFF"
+                android:translationX="550dp"
+                android:translationY="290dp" />
+
+        </FrameLayout>
     </FrameLayout>
+
+    <!-- СРЕДНИЙ СЛОЙ (основной контент / офис) -->
+
+    <!-- ПЕРЕДНИЙ СЛОЙ (передний план / эффекты / рамки) -->
 
     <FrameLayout
-        android:id="@+id/studentListButtonContainer"
-        android:layout_width="186dp"
-        android:layout_height="80dp"
-        android:layout_gravity="end|center_vertical"
-        android:layout_marginEnd="5dp"
-        android:padding="12dp"
+        android:id="@+id/studentTimerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="16dp"
+        android:padding="4dp"
+
         android:visibility="invisible">
 
-        <Button
-            android:id="@+id/openStudentListButton"
-            android:layout_width="match_parent"
+        <View
+            android:id="@+id/timerBar"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Список\nстудентов"
-            android:background="@drawable/button_round"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"/>
+            android:background="@color/white"
+           />
     </FrameLayout>
+
 
     <FrameLayout
         android:id="@+id/studentListContainer"
@@ -100,9 +104,16 @@
         android:layout_marginEnd="5dp"
         android:background="@drawable/paper_sheet"
         android:padding="12dp"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <!-- Заголовок листочка -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/studentRecycler"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="28dp"
+            android:overScrollMode="never" />
+
         <TextView
             android:id="@+id/listTitle"
             android:layout_width="wrap_content"
@@ -115,12 +126,6 @@
             android:textStyle="bold" />
 
         <!-- Контент списка -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/studentRecycler"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="28dp"
-            android:overScrollMode="never" />
 
     </FrameLayout>
 
@@ -132,7 +137,7 @@
         android:layout_gravity="bottom|center_horizontal"
         android:background="@drawable/student_card"
         android:padding="16dp"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <LinearLayout
             android:layout_width="match_parent"
