@@ -17,7 +17,6 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:src="@drawable/office_outside"/>
-
     </FrameLayout>
 
     <!-- СРЕДНИЙ СЛОЙ (основной контент / офис) -->
@@ -41,35 +40,26 @@
             android:scaleType="fitXY"
             android:src="@drawable/office_2" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="124dp"
+            android:layout_height="86dp"
+            android:text="ПРОХОДИ"
+            android:translationX="220dp"
+            android:translationY="290dp"
+            android:background="@drawable/button_round"
+            android:textColor="#FFFFFF"/>
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Пропустить"
-                android:translationX="50dp"
-                android:translationY="100dp"
-                tools:layout_editor_absoluteX="178dp"
-                tools:layout_editor_absoluteY="208dp"
-                tools:ignore="MissingConstraints" />
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Вон отсюда"
-                android:translationX="200dp"
-                android:translationY="150dp"
-                tools:layout_editor_absoluteX="364dp"
-                tools:layout_editor_absoluteY="162dp"
-                tools:ignore="MissingConstraints" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+        <!-- Кнопка 2 -->
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="127dp"
+            android:layout_height="81dp"
+            android:text="ВОН ОТСЮДА"
+            android:translationX="550dp"
+            android:translationY="290dp"
+            android:background="@drawable/button_round"
+            android:textColor="#FFFFFF"/>
     </FrameLayout>
 
 </FrameLayout>
