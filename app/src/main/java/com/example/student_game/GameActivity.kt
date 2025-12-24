@@ -3,6 +3,7 @@ package com.example.student_game
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.app.AlertDialog
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -41,6 +42,15 @@ class GameActivity : ComponentActivity() {
 
     private val characterImages = listOf(R.drawable.character_1, R.drawable.character_2)
     private var currentCharacterIndex = 0
+
+    private lateinit var heart1: View
+    private lateinit var heart2: View
+    private lateinit var heart3: View
+    private var lives = 3
+
+    // Для хранения, правильная ли карточка текущая
+    private var isFakeCard = false
+
     private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -133,23 +143,60 @@ class GameActivity : ComponentActivity() {
         })
     }
 
+    private fun onPlayerSkip() {
+        if (isFakeCard) {
+            loseLife()
+        }
+        animateCharacterExit((character.parent as View).width.toFloat())
+    }
+    private fun onPlayerAccept() {
+        if (!isFakeCard) {
+            // Игрок подтвердил правильную карточку, все ок
+        } else {
+            // Игрок ошибся — можно лишить жизни
+            loseLife()
+        }
+        animateCharacterExit(-(character.parent as View).width.toFloat())
+    }
+    private fun showGameOverDialog() {
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Игра окончена")
+            .setMessage("Вы потеряли все жизни")
+            .setPositiveButton("Начать заново") { _, _ -> restartGame() }
+            .setNegativeButton("Главное меню") { _, _ -> finish() }
+            .setCancelable(false)
+            .create()
+        dialog.show()
+    }
+
+    private fun restartGame() {
+        lives = 3
+        heart1.visibility = View.VISIBLE
+        heart2.visibility = View.VISIBLE
+        heart3.visibility = View.VISIBLE
+        currentCharacterIndex = 0
+        character.post { showNextCharacter() }
+    }
+
+    private fun loseLife() {
+        lives--
+        when (lives) {
+            2 -> heart3.visibility = View.INVISIBLE
+            1 -> heart2.visibility = View.INVISIBLE
+            0 -> heart1.visibility = View.INVISIBLE
+        }
+
+        if (lives <= 0) {
+            showGameOverDialog()
+        }
+    }
 
 
     private fun setupButtonActions() {
-        val parentWidth = (character.parent as View).width
-
-        val exitLeft = {
-            resetButtons()
-            animateCharacterExit(-parentWidth.toFloat())
-        }
-        val exitRight = {
-            resetButtons()
-            animateCharacterExit(parentWidth.toFloat())
-        }
-
-        buttonLeft.setOnClickListener { exitLeft() }
-        buttonRight.setOnClickListener { exitRight() }
+        buttonLeft.setOnClickListener { onPlayerAccept() } // Yes
+        buttonRight.setOnClickListener { onPlayerSkip() }  // No
     }
+
 
     private fun resetButtons() {
         buttonLeft.visibility = View.INVISIBLE
@@ -192,11 +239,15 @@ class GameActivity : ComponentActivity() {
         val original = students.random()
         val modified = maybeCorruptStudent(original)
 
+        // Определяем, фейк ли карточка
+        isFakeCard = modified != original
+
         tvId.text = "№ ${modified.recordBook}"
         tvName.text = modified.name
         tvCourse.text = "Курс: ${modified.course}"
         tvFaculty.text = "Факультет: ${modified.faculty}"
     }
+
     private fun maybeCorruptStudent(student: Student): Student {
         val chance = (20..30).random()
         val roll = (1..100).random()

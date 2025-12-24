@@ -182,5 +182,37 @@
         </LinearLayout>
 
     </FrameLayout>
+    <FrameLayout
+        android:id="@+id/heartsContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:padding="8dp">
+
+        <View
+            android:id="@+id/heart1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@android:color/holo_red_dark"
+            android:layout_marginEnd="4dp" />
+
+        <View
+            android:id="@+id/heart2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@android:color/holo_red_dark"
+            android:layout_marginStart="28dp"
+            android:layout_gravity="start" />
+
+        <View
+            android:id="@+id/heart3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@android:color/holo_red_dark"
+            android:layout_marginStart="56dp"
+            android:layout_gravity="start" />
+
+    </FrameLayout>
+
 
 </FrameLayout>
