@@ -44,33 +44,41 @@
             android:scaleType="fitXY"
             android:src="@drawable/office_2" />
 
-        <FrameLayout
-            android:id="@+id/uiLayer"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!-- Кнопка YES -->
             <Button
                 android:id="@+id/button1"
-                android:layout_width="124dp"
-                android:layout_height="86dp"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/button_round"
                 android:text="@string/yes"
                 android:textColor="#FFFFFF"
-                android:translationX="220dp"
-                android:translationY="290dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/button2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontalWeight="1"
+                android:layout_margin="16dp"/>
 
-            <!-- Кнопка 2 -->
+            <!-- Кнопка NO -->
             <Button
                 android:id="@+id/button2"
-                android:layout_width="127dp"
-                android:layout_height="81dp"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/button_round"
                 android:text="@string/no"
                 android:textColor="#FFFFFF"
-                android:translationX="550dp"
-                android:translationY="290dp" />
+                app:layout_constraintStart_toEndOf="@id/button1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontalWeight="1"
+                android:layout_margin="16dp"/>
 
-        </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 
     <!-- СРЕДНИЙ СЛОЙ (основной контент / офис) -->
